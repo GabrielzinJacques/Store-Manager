@@ -5,9 +5,12 @@ const middleware = require('../../middlewares/index');
 const salesRouter = express.Router();
 
 salesRouter.get('/', salesController.getAllSales);
+
 salesRouter.get('/:id', salesController.getById);
+
 salesRouter.post('/', 
 middleware.valid.validateBodySal,
-middleware.valid.validateSales);
+middleware.valid.validateSales,
+salesController.createSales);
 
 module.exports = salesRouter;

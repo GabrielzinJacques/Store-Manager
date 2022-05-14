@@ -23,7 +23,19 @@ const getById = async (req, res, next) => {
   }
 };
 
+const createSales = async (req, res, next) => {
+  try {
+    const { body } = req;
+    const sales = await salesService.createSales(body);
+    
+    return res.status(201).json(sales);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllSales,
   getById,
+  createSales,
 };

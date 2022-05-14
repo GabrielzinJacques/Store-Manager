@@ -21,7 +21,27 @@ const getById = async (id) => {
   return result;
 };
 
+const insertDate = async () => {
+  const [{ insertId }] = await connection.query(`INSERT INTO
+  sales (date)
+  VALUES (NOW())`);
+  return insertId;
+};
+
+const createSales = async (insertId, productId, quantity) => {
+  await connection.query(`INSERT INTO sales_products
+  (sale_id, product_id, quantity)
+  VALUES (?, ?, ?)`, [insertId, productId, quantity]);
+  
+  return {
+    productId,
+    quantity,
+  };
+};
+
 module.exports = {
   getAllSales,
   getById,
+  insertDate,
+  createSales,
 };

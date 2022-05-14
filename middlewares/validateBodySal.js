@@ -12,8 +12,7 @@ const body = joi.array().items(
 );
 
 const validateBody = (req, res, next) => {
-  const { productId, quantity } = req.body;
-  const { error } = body.validate({ productId, quantity });
+  const { error } = body.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.message });
   }
