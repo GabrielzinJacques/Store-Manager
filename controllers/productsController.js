@@ -5,9 +5,9 @@ const getAllProducts = async (req, res, next) => {
     const products = await productsService.getAllProducts();
 
     return res.status(200).json(products);
-  } catch (err) {
-    console.log('Err list Products', err.message);
-    next(err);
+  } catch (error) {
+    console.log('Err list Products', error.message);
+    next(error);
   }
 };
 
@@ -17,9 +17,9 @@ const getById = async (req, res, next) => {
     const product = await productsService.getById(id);
 
     return res.status(200).json(product);
-  } catch (err) {
-    console.log('Err Id Product', err.message);
-    next(err);
+  } catch (error) {
+    console.log('Err Id Product', error.message);
+    next(error);
   }
 };
 
@@ -44,9 +44,20 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
+const deleteProduct = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await productsService.deleteProduct(id);
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };

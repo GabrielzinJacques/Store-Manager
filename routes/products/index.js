@@ -18,4 +18,6 @@ middleware.valid.validateBodyPro,
 middleware.valid.validateProducts,
 productsController.updateProduct);
 
+productsRouter.delete('/:id', productsController.deleteProduct);
+
 module.exports = productsRouter;
