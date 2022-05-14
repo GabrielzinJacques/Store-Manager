@@ -5,6 +5,7 @@ const salesRouter = require('./sales/index');
 const router = express.Router();
 
 router.use('/products', productsRouter);
+
 router.use('/sales', salesRouter);
 
 module.exports = router;
