@@ -19,15 +19,15 @@ const getById = async (id) => {
 
 // Lançando o error de uma forma diferente 
 
-// const createProduct = async (name, quantity) => {
-//   const isProduct = await productsModel.getByName(name);
-//   if (isProduct) {
-//     const error = { status: 409, message: 'Product already exists' };
-//     throw error;
-//   }
-//   const newProduct = await productsModel.createProduct(name, quantity);
-//   return newProduct;
-// };
+const createProduct = async (name, quantity) => {
+  const isProduct = await productsModel.getByName(name);
+  if (isProduct) {
+    const error = { status: 409, message: 'Product already exists' };
+    throw error;
+  }
+  const newProduct = await productsModel.createProduct(name, quantity);
+  return newProduct;
+};
 
 module.exports = {
   getAllProducts,
