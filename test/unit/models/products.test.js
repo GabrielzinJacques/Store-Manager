@@ -45,11 +45,11 @@ describe('Testa na camada de models a função getById', () => {
       "quantity": 10
     }]]
 
-    beforeEach(() => {
+    before(() => {
       sinon.stub(connection, 'query').resolves(response)
     })
 
-    afterEach(() => connection.query.restore())
+    after(() => connection.query.restore())
 
     it('Retorna um objeto' ,async () => {
       const response = await productsModel.getById()
@@ -65,11 +65,11 @@ describe('Testa na camada de models a função getById', () => {
   describe('Quando não encontra o id', () => {
     const response = [[]]
 
-    beforeEach(() => {
+    before(() => {
       sinon.stub(connection, 'query').resolves(response)
     })
 
-    afterEach(() => connection.query.restore())
+    after(() => connection.query.restore())
 
     it('deve retornar undefined' ,async () => {
       const response = await productsModel.getById()

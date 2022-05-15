@@ -17,11 +17,11 @@ describe('Testa na camada de services a função getAllProducts', () => {
         "quantity": 20
       }]
 
-    beforeEach(() => {
+    before(() => {
       sinon.stub(productsModel, 'getAllProducts').resolves(response)
     })
 
-    afterEach(() => productsModel.getAllProducts.restore())
+    after(() => productsModel.getAllProducts.restore())
 
     it('Retorna um array', async () => {
       const response = await productsService.getAllProducts()
@@ -44,11 +44,11 @@ describe('Testa na camada de models a função getById', () => {
       "quantity": 10
     }
 
-    beforeEach(() => {
+    before(() => {
       sinon.stub(productsModel, 'getById').resolves(result)
     })
 
-    afterEach(() => {
+    after(() => {
       productsModel.getById.restore()
     })
 

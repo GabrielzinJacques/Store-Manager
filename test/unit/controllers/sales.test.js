@@ -30,14 +30,14 @@ describe('Testa na camada de services a função getAllSales', () => {
     const res = {}
     const req = {}
 
-    beforeEach(() => {
+    before(() => {
       res.status = sinon.stub().returns(res)
       res.json = sinon.stub().returns(response)
 
       sinon.stub(salesService, 'getAllSales').resolves(response)
     })
 
-    afterEach(() => {
+    after(() => {
       salesService.getAllSales.restore()
     })
 

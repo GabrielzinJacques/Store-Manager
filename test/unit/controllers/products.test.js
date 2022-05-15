@@ -20,7 +20,7 @@ describe('Testa na camada de controllers a função getAllProducts', () => {
     const res = {}
     const req = {}
 
-    beforeEach(() => {
+    before(() => {
 
       res.status = sinon.stub().returns(res)
       res.json = sinon.stub().returns(response)
@@ -28,7 +28,7 @@ describe('Testa na camada de controllers a função getAllProducts', () => {
       sinon.stub(productsService, 'getAllProducts').resolves(response)
     })
 
-    afterEach(() => productsService.getAllProducts.restore())
+    after(() => productsService.getAllProducts.restore())
 
     it('Retorna um status 200', async () => {
       await produtsController.getAllProducts(req, res)
@@ -58,7 +58,7 @@ describe('Testa na camada de controllers a função getById', () => {
     const res = {}
     const next = sinon.stub().returns()
 
-    beforeEach(() => {
+    before(() => {
       req.params = {id: 1}
       res.status = sinon.stub().returns(res)
       res.json = sinon.stub().returns(response)
@@ -66,7 +66,7 @@ describe('Testa na camada de controllers a função getById', () => {
       sinon.stub(productsService, 'getById').resolves(response)
     })
 
-    afterEach(() => {
+    after(() => {
       productsService.getById.restore()
     })
 
