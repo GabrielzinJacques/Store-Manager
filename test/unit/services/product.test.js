@@ -34,3 +34,52 @@ describe('Testa na camada de services a função getAllProducts', () => {
     })
   })
 })
+
+describe('Testa na camada de models a função getById', () => {
+  describe('Quando existe o id', () => {
+
+    const result =  {
+      "id": 1,
+      "name": "Martelo de Thor",
+      "quantity": 10
+    }
+
+    beforeEach(() => {
+      sinon.stub(productsModel, 'getById').resolves(result)
+    })
+
+    afterEach(() => {
+      productsModel.getById.restore()
+    })
+
+    it('Retorna um objeto' , async () => {
+      const response = await productsService.getById()
+      expect(response).to.be.a('object')
+    })
+
+    it('Encontra um objeto com as chaves "id", "name" e "quantity"', async () => {
+      const response = await productsService.getById()
+      expect(response).to.have.all.keys('id', 'name' ,'quantity')
+    })
+  })
+  describe('Quando não encontra o id', () => {
+
+    const response = [];
+
+    before(() => {
+      sinon.stub(productsModel, 'getById').resolves(response)
+    })
+
+    after(() => {
+      productsModel.getById.restore()
+    })
+
+    it('Retorna um erro no status 404', async () => {
+      try {
+        await productsService.getById(6)
+      } catch (err) {
+        expect(err.status).to.be.equal(404)
+      }
+    });
+  });
+});
