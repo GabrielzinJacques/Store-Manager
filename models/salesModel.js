@@ -39,9 +39,22 @@ const createSales = async (insertId, productId, quantity) => {
   };
 };
 
+const updateSale = async (id, productId, quantity) => {
+  await connection.query(`UPDATE sales_products
+  SET quantity=?
+  WHERE sale_id=?
+  AND product_id=?`, [quantity, id, productId]);
+
+  return {
+    productId,
+    quantity,
+  };
+};
+
 module.exports = {
   getAllSales,
   getById,
   insertDate,
   createSales,
+  updateSale,
 };

@@ -31,7 +31,6 @@ const createProduct = async (name, quantity) => {
 
 const updateProduct = async (name, quantity, id) => {
   const isProduct = await productsModel.getById(id);
-  console.log('id:', isProduct);
   if (!isProduct) {
     const error = { status: 404, message: 'Product not found' };
     throw error;

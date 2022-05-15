@@ -13,4 +13,9 @@ middleware.valid.validateBodySal,
 middleware.valid.validateSales,
 salesController.createSales);
 
+salesRouter.put('/:id', 
+middleware.valid.validateBodySal,
+middleware.valid.validateSales,
+salesController.updateSales);
+
 module.exports = salesRouter;
